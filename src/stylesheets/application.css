@@ -1,3 +1,7 @@
 .root {
   -fx-background-color: #eee;
 }
+
+.textfield {
+  -fx-width: 850px;
+}
