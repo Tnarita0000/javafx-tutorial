@@ -1,4 +1,5 @@
 package classes;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,7 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Text;
+import java.util.*;
 
 public class Top {
   public static Scene render() {
@@ -28,11 +30,16 @@ public class Top {
     gridList.setVgap(12);
     gridList.setHgap(10);
 
+    GridPane gridHeader= new GridPane();
+    gridHeader.setPadding(new Insets(2, 2, 2, 2));
+    gridHeader.setVgap(2);
+    gridHeader.setHgap(2);
+
     /* setting BorderPane */
     BorderPane borderPane = new BorderPane();
 
     /* setting Scene */
-    Scene scene = new Scene(borderPane, 800, 600);
+    Scene scene = new Scene(borderPane, 800, 650);
     scene.getStylesheets().add("src/stylesheets/application.css");
 
     /* parts in gridForm */
@@ -58,24 +65,25 @@ public class Top {
 
     /* parts in gridList */
     Label nameLabel1 = new Label("Sample1");
-    Label nameLabel2 = new Label("Sampl2");
+    Label nameLabel2 = new Label("Sample2");
     Label nameLabel3 = new Label("Sample3");
 
-    //HBox hbButtons = new HBox();
-    //hbButtons.setSpacing(10.0);
-    //Button btnSubmit = new Button("Submit");
-    //Button btnClear = new Button("Clear");
-    //Button btnExit = new Button("Exit");
+    /* parts in gridHeader */
+    Label headerLabel1 = new Label("File");
+    Label headerLabel2 = new Label("Edit");
+    headerLabel1.setStyle("-fx-border-color: transparent transparent #888 transparent");
+    headerLabel2.setStyle("-fx-border-color: transparent transparent #888 transparent");
 
     connectBtn.setOnAction(e -> {
       System.out.println(nameInput.getText());
       System.out.println(hostnameInput.getText());
-      new MysqlConnector(nameInput.getText(),     hostnameInput.getText(),
+      MysqlConnector mysqlConnector = new MysqlConnector(nameInput.getText(),     hostnameInput.getText(),
                          usernameInput.getText(), passwordInput.getText(),
                          Integer.parseInt(portInput.getText()),
                          sshHostnameInput.getText(), sshPasswordInput.getText(),
                          sshUsernameInput.getText(), Integer.parseInt(sshPortInput.getText())
                         );
+      MysqlView.render(mysqlConnector.tables);
     });
 
     gridForm.add(nameLabel,        0, 0);
@@ -102,6 +110,9 @@ public class Top {
     gridList.add(nameLabel2, 0, 2);
     gridList.add(nameLabel3, 0, 3);
 
+    gridHeader.add(headerLabel1, 0, 0);
+    gridHeader.add(headerLabel2, 1, 0);
+
     /* setting Box */
     VBox listVBox = new VBox();
     listVBox.setAlignment(Pos.CENTER);
@@ -109,17 +120,21 @@ public class Top {
     listVBox.getChildren().add(gridList);
     borderPane.setLeft(listVBox);
 
+    gridForm.setStyle("-fx-font-size: 15px;");
     HBox formHBox = new HBox();
     formHBox.setAlignment(Pos.CENTER);
     formHBox.getChildren().add(gridForm);
     borderPane.setCenter(formHBox);
 
+    HBox headerBox = new HBox();
+    headerBox.setSpacing(10.0);
+    headerBox.getChildren().addAll(headerLabel1, headerLabel2);
+    headerBox.setStyle("-fx-background-color: #ccc; -fx-border-color: transparent transparent #999 transparent;");
+    headerBox.setMargin(headerLabel1, new Insets(2, 2, 2, 2));
+    headerBox.setMargin(headerLabel2, new Insets(2, 2, 2, 2));
+    headerBox.getChildren().add(gridHeader);
+    borderPane.setTop(headerBox);
+
     return scene;
-
-    //hbButtons.getChildren().addAll(btnSubmit, btnClear, btnExit);
-    //gridForm.add(hbButtons, 0, 10, 2, 1);
-
-    //borderPane.setCenter(gridForm);
-    //borderPane.setLeft(gridList);
   }
 }
