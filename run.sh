@@ -3,5 +3,5 @@ export CLASSPATH
 
 
 javac -d . src/controller/*.java
-javac -d . src/Main.java
-java classes.Main
+javac -d . src/app/App.java
+java classes.App
