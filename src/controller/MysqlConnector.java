@@ -6,7 +6,6 @@ import java.sql.*;
 import com.jcraft.jsch.*;
 
 public class MysqlConnector {
-  String name;
   String hostname;
   String username;
   String password;
@@ -16,14 +15,19 @@ public class MysqlConnector {
   String sshPassword;
   int sshPort;
   List<String> tables;
+  Connection con;
 
-  public MysqlConnector( String name, String hostname,    String username,    String password,
-                         int port,    String sshHostname, String sshPassword, String sshUsername,
-                         int sshPort) {
-    this.name = name; this.hostname = hostname;       this.username = username;       this.password = password;
-    this.port = port; this.sshHostname = sshHostname; this.sshPassword = sshPassword; this.sshPort = sshPort;
-    this.sshUsername = sshUsername;  this.tables = new ArrayList<String>();
-
+  public MysqlConnector( String hostname,    String username,    String password, int port,
+                         String sshHostname, String sshUsername, String sshPassword, int sshPort) {
+    this.hostname = hostname;
+    this.username = username;
+    this.password = password;
+    this.port = port;
+    this.sshHostname = sshHostname;
+    this.sshPassword = sshPassword;
+    this.sshPort = sshPort;
+    this.sshUsername = sshUsername;
+    this.tables = new ArrayList<String>();
     try {
       final JSch jsch         = new JSch();
       final Properties config = new Properties();
@@ -32,6 +36,7 @@ public class MysqlConnector {
       session.setConfig(config);
       session.setPassword(sshPassword);
       session.connect();
+      System.out.println("connected !!!");
       session.setPortForwardingL(3036, sshHostname, port);
 
       Connection con = DriverManager.getConnection("jdbc:mysql://" + hostname, username, password);

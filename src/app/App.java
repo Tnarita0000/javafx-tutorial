@@ -16,7 +16,8 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class App extends Application {
-  Stage window;
+  private static App instance;
+  private Stage stage;
 
   public static void main(String[] args) {
     launch(args);
@@ -24,10 +25,35 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("../src/view/Top.fxml"));
-    window = primaryStage;
-    window.setTitle("Mysql Client");
-    window.setScene(new Scene(root, 800, 650));
-    window.show();
+    instance = this;
+    stage = primaryStage;
+    stage.setMaximized(true);
+    stage.setTitle("Mysql Client");
+    sendTopController();
+    stage.show();
+  }
+
+  public void sendTopController() {
+    TopController controller = new TopController();
+    this.switchScene(controller);
+  }
+
+  public void sendMysqlViewController() {
+    MysqlViewController controller = new MysqlViewController();
+    this.switchScene(controller);
+  }
+
+  private void switchScene(Parent controller) {
+    Scene scene = stage.getScene();
+    if (scene == null) {
+      scene = new Scene(controller);
+      stage.setScene(scene);
+    } else {
+      stage.getScene().setRoot(controller);
+    }
+  }
+
+  public static App getInstance() {
+    return instance;
   }
 }

@@ -4,7 +4,10 @@
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.text.* ?>
-<BorderPane>
+<?import javafx.event.* ?>
+
+<fx:root type="BorderPane" xmlns:fx="http://javafx.com/fxml">
+<!--BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" -->
 
   <top>
     <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
@@ -20,16 +23,20 @@
       <children>
         <Label text="Host Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"></TextField>
+        <TextField fx:id="hostname"
+          GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         <Label text="User Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"></TextField>
+        <TextField fx:id="username"
+          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <Label text="Password:"
           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"></TextField>
+        <PasswordField fx:id="password"
+          GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         <Label text="Port:"
           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"></TextField>
+        <TextField text="3306" fx:id="port"
+          GridPane.columnIndex="1" GridPane.rowIndex="3"/>
         <Label text="SSH Port Forwarding:"
           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
@@ -43,26 +50,27 @@
 
         <Label text="SSH Host Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField
-          GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>
+        <TextField fx:id="sshHostname"
+          GridPane.columnIndex="1" GridPane.rowIndex="5"/>
         <Label text="SSH Port:"
           GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextField
-          GridPane.columnIndex="1" GridPane.rowIndex="6"></TextField>
+        <TextField text="22" fx:id="sshPort"
+          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
         <Label text="SSH User Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <TextField
-          GridPane.columnIndex="1" GridPane.rowIndex="7"></TextField>
+        <TextField fx:id="sshUsername"
+          GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         <Label text="SSH Password:"
           GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-        <TextField
-          GridPane.columnIndex="1" GridPane.rowIndex="8"></TextField>
+        <PasswordField fx:id="sshPassword"
+          GridPane.columnIndex="1" GridPane.rowIndex="8"/>
 
 
         <Button text="Connect" 
-          GridPane.columnIndex="1" GridPane.rowIndex="10" />
+          GridPane.columnIndex="1" GridPane.rowIndex="10" onAction="#connectMySQL" />
       </children>
     </GridPane>
   </center>
 
-</BorderPane>
+<!--/BorderPane -->
+</fx:root>

@@ -1,5 +1,6 @@
 package classes;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,8 +14,25 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import java.util.*;
+import java.io.IOException;
 
-public class MysqlView {
+public class MysqlViewController extends BorderPane {
+
+  public MysqlViewController() {
+    loadFXML();
+  }
+
+  private void loadFXML() {
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("../src/view/MysqlView.fxml"));
+    fxmlLoader.setRoot(this);
+    fxmlLoader.setController(this);
+    try {
+      fxmlLoader.load();
+    } catch (IOException exceptioin) {
+      throw new RuntimeException(exceptioin);
+    }
+  }
+
   public static void render(List<String> tables) {
     tables.forEach(table -> System.out.println(table));
     GridPane gridTableList = new GridPane();
