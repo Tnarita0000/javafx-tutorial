@@ -49,7 +49,7 @@ public class MysqlConnector {
   private void connectMysql() {
     try {
       this.con = DriverManager.getConnection(
-          "jdbc:mysql://127.0.0.1:3306/", this.username, this.password
+          "jdbc:mysql://"+this.hostname,  this.username, this.password
           );
     } catch (SQLException e) {
       e.printStackTrace();
