@@ -14,11 +14,11 @@ public class MysqlConnector {
   String sshHostname;
   String sshPassword;
   int sshPort;
-  List<String> tables;
-  Connection con;
+  static List<String> tables;
+  static Connection con;
 
   public MysqlConnector( String hostname,    String username,    String password, int port,
-                         String sshHostname, String sshUsername, String sshPassword, int sshPort) {
+      String sshHostname, String sshUsername, String sshPassword, int sshPort) {
     this.hostname = hostname;
     this.username = username;
     this.password = password;
@@ -29,6 +29,33 @@ public class MysqlConnector {
     this.sshUsername = sshUsername;
     this.tables = new ArrayList<String>();
     try {
+      doSshForward();
+      connectMysql();
+      getDatabases();
+    } catch (Exception e) { e.printStackTrace(); }
+  }
+
+  public void getDatabases() {
+    try {
+      PreparedStatement statement = this.con.prepareStatement("show databases;");
+      ResultSet result = statement.executeQuery();
+      while(result.next()) {
+        String table = result.getString("Database");
+        this.tables.add(table);
+      }
+    } catch (SQLException e) { e.printStackTrace(); }
+  }
+
+  private void connectMysql() {
+    try {
+    this.con = DriverManager.getConnection(
+        "jdbc:mysql://" + this.hostname, this.username, this.password
+        );
+    } catch (SQLException e) { e.printStackTrace(); }
+  }
+
+  private void doSshForward() {
+    try {
       final JSch jsch         = new JSch();
       final Properties config = new Properties();
       config.put("StrictHostKeyChecking", "no");
@@ -38,15 +65,7 @@ public class MysqlConnector {
       session.connect();
       System.out.println("connected !!!");
       session.setPortForwardingL(3036, sshHostname, port);
-
-      Connection con = DriverManager.getConnection("jdbc:mysql://" + hostname, username, password);
-      PreparedStatement statement = con.prepareStatement("show databases;");
-      ResultSet result = statement.executeQuery();
-      while(result.next()) {
-        String table = result.getString("Database");
-        this.tables.add(table);
-      }
-    } catch (Exception e) { e.printStackTrace(); } 
+    } catch (Exception e) { e.printStackTrace(); }
   }
 
   public void getTables() {

@@ -37,7 +37,6 @@ public class TopController extends BorderPane {
         sshHostname.getText(), sshUsername.getText(),
         sshPassword.getText(), Integer.parseInt(sshPort.getText())
     );
-    System.out.println("fuck fuck fuck");
     App.getInstance().sendMysqlViewController();
   }
 
@@ -50,9 +49,5 @@ public class TopController extends BorderPane {
     } catch (IOException exceptioin) {
       throw new RuntimeException(exceptioin);
     }
-  }
-
-  protected void connectMySQL() {
-    App.getInstance().sendMysqlViewController();
   }
 }
