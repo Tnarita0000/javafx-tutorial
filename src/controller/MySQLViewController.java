@@ -38,22 +38,24 @@ public class MySQLViewController {
     gridHeader.getChildren().add(tableButton);
 
 
-    /* table list */
+    /* database list */
     GridPane gridTableList = new GridPane();
     gridTableList.setAlignment(Pos.CENTER);
     gridTableList.setHgap(30);
     for(int i=0; i<tableList.size(); i++) {
-      VBox vb = new VBox();
-      vb.getStyleClass().add("table-list");
-      vb.setPadding(new Insets(10, windowSize.getWidth()/4, 10, windowSize.getWidth()/4));
+      VBox databaseVBox = new VBox();
+      databaseVBox.getStyleClass().add("table-list");
+      databaseVBox.setPadding(new Insets(10, windowSize.getWidth()/4, 10, windowSize.getWidth()/4));
       Label label = new Label(tableList.get(i));
       label.setStyle("-fx-font: 18px Serif");
-      vb.getChildren().add(label);
-      gridTableList.add(vb, 0, i);
+      databaseVBox.getChildren().add(label);
+      gridTableList.add(databaseVBox, 0, i);
 
-      //vb.setOnMouseClicked(e -> {
-      //  MySQLConnector.getTables(label.getText());
-      //});
+      databaseVBox.setOnMouseClicked(e -> {
+        MySQLConnector.instance.connectDatabase(label.getText());
+        List<String> tables = MySQLSearch.getTables(MySQLConnector.con, label.getText());
+        tables.forEach( table -> System.out.println(table));
+      });
     }
 
     pane.setTop(gridHeader);

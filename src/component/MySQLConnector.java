@@ -45,6 +45,18 @@ public class MySQLConnector {
     }
   }
 
+  public void connectDatabase(String databaseName) {
+    try {
+      this.con = DriverManager.getConnection(
+          "jdbc:mysql://" + this.hostname + "/" + databaseName,
+          this.username,
+          this.password
+          );
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   private void doSshForward() {
     try {
       final JSch jsch         = new JSch();

@@ -19,4 +19,18 @@ public class MySQLSearch {
     return databases;
   }
 
+  public static List<String> getTables(Connection con, String databaseName) {
+    List<String> tables;
+    tables = new ArrayList<String>();
+    try{
+      PreparedStatement statement = con.prepareStatement("show tables");
+      ResultSet result = statement.executeQuery();
+      while(result.next()) {
+        String table = result.getString("Tables_in_" + databaseName);
+        tables.add(table);
+      }
+    } catch (SQLException e) { e.printStackTrace(); }
+    return tables;
+  }
+
 }
