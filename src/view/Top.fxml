@@ -4,6 +4,7 @@
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.text.* ?>
+<?import javafx.scene.Group ?>
 <?import javafx.event.* ?>
 
 <fx:root type="BorderPane" xmlns:fx="http://javafx.com/fxml">
@@ -42,19 +43,15 @@
         <Label text="SSH Port Forwarding:"
           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
-        <HBox
-          GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="0" >
+        <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="0" >
           <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
-          <RadioButton fx:id="sshFalse" selected="true" text="No" onAction="#selectSshOption" >
-            <toggleGroup>
-              <ToggleGroup fx:id="toggle1"/>
-            </toggleGroup>
-          </RadioButton>
-          <RadioButton fx:id="sshTrue" text="Yes" toggleGroup="$toggle1" onAction="#selectSshOption" />
+          <fx:define> <ToggleGroup fx:id="toggle1"/> </fx:define>
+          <RadioButton fx:id="sshFalse" text="No"  toggleGroup="$toggle1" onAction="#selectSshOption" selected="true"/>
+          <RadioButton fx:id="sshTrue"  text="Yes" toggleGroup="$toggle1" onAction="#selectSshOption" />
         </HBox>
 
         <Label fx:id="sshHostnameLabel" text="SSH Host Name:"
-          GridPane.columnIndex="0" GridPane.rowIndex="5"  managed="false" />
+          GridPane.columnIndex="0" GridPane.rowIndex="5" managed="false"/>
         <TextField fx:id="sshHostnameInput"
           GridPane.columnIndex="1" GridPane.rowIndex="5" managed="false"/>
 
@@ -71,7 +68,7 @@
         <Label fx:id="sshPasswordLabel" text="SSH Password:"
           GridPane.columnIndex="0" GridPane.rowIndex="8" managed="false"/>
         <PasswordField fx:id="sshPasswordInput"
-          GridPane.columnIndex="1" GridPane.rowIndex="8"  managed="false"/>
+          GridPane.columnIndex="1" GridPane.rowIndex="8" managed="false"/>
 
         <Button fx:id="connectButton" text="Connect"
           GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#connectMySQL" />

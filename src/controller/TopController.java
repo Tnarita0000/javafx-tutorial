@@ -44,7 +44,6 @@ public class TopController extends BorderPane {
         sshHostnameInput.getText(), sshUsernameInput.getText(),
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
     );
-
     MysqlViewController controller = new MysqlViewController(this.stage);
     SceneComponent.switchScene(stage, controller.pane);
   }
