@@ -1,7 +1,7 @@
 package classes;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,36 +9,50 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import java.util.*;
 import java.io.IOException;
 
-public class MysqlViewController extends BorderPane {
+public class MysqlViewController {
+  public static BorderPane pane;
 
   public MysqlViewController() {
-    loadFXML();
+    render();
   }
 
-  private void loadFXML() {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("../src/view/MysqlView.fxml"));
-    fxmlLoader.setRoot(this);
-    fxmlLoader.setController(this);
-    try {
-      fxmlLoader.load();
-    } catch (IOException exceptioin) {
-      throw new RuntimeException(exceptioin);
-    }
-  }
+  public static void render() {
+    Rectangle2D windowSize = Screen.getPrimary().getVisualBounds();
+    pane = new BorderPane();
+    List<String> tableList = MysqlConnector.tables;
 
-  public static void render(List<String> tables) {
-    tables.forEach(table -> System.out.println(table));
+    /* header */
+    GridPane gridHeader = new GridPane();
+    gridHeader.setPadding(new Insets(15, 25, 15, 25));
+    gridHeader.setStyle("-fx-background-color: black");
+    Button tableButton = new Button("Tables");
+    tableButton.setStyle("-fx-font: 20px Serif");
+    gridHeader.getChildren().add(tableButton);
+
+
+    /* table list */
     GridPane gridTableList = new GridPane();
     gridTableList.setAlignment(Pos.CENTER);
-    gridTableList.setPadding(new Insets(10, 10, 10, 10));
-    gridTableList.setVgap(12);
-    gridTableList.setHgap(10);
+    gridTableList.setHgap(30);
+    for(int i=0; i<tableList.size(); i++) {
+      VBox vb = new VBox();
+      vb.getStyleClass().add("table-list");
+      vb.setPadding(new Insets(10, windowSize.getWidth()/4, 10, windowSize.getWidth()/4));
+      Label label = new Label(tableList.get(i));
+      label.setStyle("-fx-font: 18px Serif");
+      vb.getChildren().add(label);
+      gridTableList.add(vb, 0, i);
+    }
+
+    pane.setTop(gridHeader);
+    pane.setCenter(gridTableList);
   }
 }

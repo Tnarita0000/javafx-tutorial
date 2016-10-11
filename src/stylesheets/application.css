@@ -5,3 +5,12 @@
 .textfield {
   -fx-width: 850px;
 }
+
+.table-list {
+  -fx-background-color: white;
+  -fx-border-color: #DDD;
+}
+.table-list:hover{
+  -fx-background-color: #CCFFFF;
+  -fx-border-color: #99CCFF;
+}

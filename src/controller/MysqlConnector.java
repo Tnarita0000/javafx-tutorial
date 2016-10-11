@@ -48,10 +48,12 @@ public class MysqlConnector {
 
   private void connectMysql() {
     try {
-    this.con = DriverManager.getConnection(
-        "jdbc:mysql://" + this.hostname, this.username, this.password
-        );
-    } catch (SQLException e) { e.printStackTrace(); }
+      this.con = DriverManager.getConnection(
+          "jdbc:mysql://127.0.0.1:3306/", this.username, this.password
+          );
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   private void doSshForward() {
@@ -63,8 +65,8 @@ public class MysqlConnector {
       session.setConfig(config);
       session.setPassword(sshPassword);
       session.connect();
+      session.setPortForwardingL(port, sshHostname, port);
       System.out.println("connected !!!");
-      session.setPortForwardingL(3036, sshHostname, port);
     } catch (Exception e) { e.printStackTrace(); }
   }
 

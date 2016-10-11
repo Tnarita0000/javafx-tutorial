@@ -40,13 +40,14 @@ public class App extends Application {
 
   public void sendMysqlViewController() {
     MysqlViewController controller = new MysqlViewController();
-    this.switchScene(controller);
+    stage.getScene().setRoot(controller.pane);
   }
 
   private void switchScene(Parent controller) {
     Scene scene = stage.getScene();
     if (scene == null) {
       scene = new Scene(controller);
+      scene.getStylesheets().addAll("./src/stylesheets/application.css");
       stage.setScene(scene);
     } else {
       stage.getScene().setRoot(controller);

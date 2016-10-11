@@ -31,7 +31,7 @@ public class TopController extends BorderPane {
   }
 
   public void connectMySQL(ActionEvent e) throws Exception{
-    MysqlConnector con = new MysqlConnector(
+    MysqlConnector connector = new MysqlConnector(
         hostname.getText(),    username.getText(),
         password.getText(),    Integer.parseInt(port.getText()),
         sshHostname.getText(), sshUsername.getText(),
