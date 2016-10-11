@@ -1,24 +1,17 @@
 package classes;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.net.URL;
-import java.util.*;
 import java.io.IOException;
 
 public class TopController extends BorderPane {
@@ -32,12 +25,15 @@ public class TopController extends BorderPane {
   public Label sshUsernameLabel; public TextField sshUsernameInput;
   public Label sshPasswordLabel; public TextField sshPasswordInput;
 
-  /* Form information */
+  /* Stage and Node information */
+  public static BorderPane pane;
+  public Stage stage;
   public RadioButton sshTrue;
   public GridPane gridForm;
   public Button connectButton;
 
-  public TopController() {
+  public TopController(Stage stage) {
+    this.stage = stage;
     loadFXML();
   }
 
@@ -48,11 +44,11 @@ public class TopController extends BorderPane {
         sshHostnameInput.getText(), sshUsernameInput.getText(),
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
     );
-    App.getInstance().sendMysqlViewController();
+    sendMysqlViewController();
   }
 
   private void loadFXML() {
-    URL location = App.class.getResource("../src/view/Top.fxml");
+    URL location = getClass().getResource("../src/view/Top.fxml");
     FXMLLoader fxmlLoader = new FXMLLoader(location);
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -64,8 +60,6 @@ public class TopController extends BorderPane {
   }
 
   public void selectSshOption(ActionEvent e) {
-    int gridRowCount = gridForm.getChildren().size();
-    int i = 0;
     if (sshTrue.isSelected()) {
       sshHostnameLabel.setManaged(true);
       sshHostnameInput.setManaged(true);
@@ -75,9 +69,8 @@ public class TopController extends BorderPane {
       sshUsernameInput.setManaged(true);
       sshPasswordLabel.setManaged(true);
       sshPasswordInput.setManaged(true);
-
       gridForm.getChildren().remove(connectButton);
-      gridForm.add(connectButton, 1, getGridRowSize() + 1);
+      gridForm.add(connectButton, 1, getGridRowSize()+1);
     } else {
       loadFXML();
     }
@@ -85,5 +78,10 @@ public class TopController extends BorderPane {
 
   public int getGridRowSize() {
     return gridForm.getChildren().size()/2;
+  }
+
+  public void sendMysqlViewController() {
+    MysqlViewController controller = new MysqlViewController();
+    stage.getScene().setRoot(controller.pane);
   }
 }

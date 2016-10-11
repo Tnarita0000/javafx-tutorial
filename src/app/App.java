@@ -1,22 +1,9 @@
 package classes;
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class App extends Application {
-  private static App instance;
   private Stage stage;
 
   public static void main(String[] args) {
@@ -25,7 +12,6 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    instance = this;
     stage = primaryStage;
     stage.setMaximized(true);
     stage.setTitle("Mysql Client");
@@ -34,27 +20,9 @@ public class App extends Application {
   }
 
   public void sendTopController() {
-    TopController controller = new TopController();
-    this.switchScene(controller);
-  }
-
-  public void sendMysqlViewController() {
-    MysqlViewController controller = new MysqlViewController();
-    stage.getScene().setRoot(controller.pane);
-  }
-
-  private void switchScene(Parent controller) {
-    Scene scene = stage.getScene();
-    if (scene == null) {
-      scene = new Scene(controller);
-      scene.getStylesheets().addAll("./src/stylesheets/application.css");
-      stage.setScene(scene);
-    } else {
-      stage.getScene().setRoot(controller);
-    }
-  }
-
-  public static App getInstance() {
-    return instance;
+    TopController controller = new TopController(stage);
+    Scene scene = new Scene(controller);
+    scene.getStylesheets().addAll("./src/stylesheets/application.css");
+    stage.setScene(scene);
   }
 }
