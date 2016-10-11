@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 
 public class SceneComponent {
 
-  public static void switchScene(Stage stage, Parent pane) {
+  public static void sendScene(Stage stage, Parent pane) {
     Scene scene = stage.getScene();
     if (scene == null) {
       scene = new Scene(pane);

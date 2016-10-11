@@ -45,7 +45,7 @@ public class TopController extends BorderPane {
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
     );
     MySQLViewController controller = new MySQLViewController(this.stage);
-    SceneComponent.switchScene(stage, controller.pane);
+    SceneComponent.sendScene(stage, controller.pane);
   }
 
   private void loadFXML() {
