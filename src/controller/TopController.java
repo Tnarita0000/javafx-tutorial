@@ -38,13 +38,13 @@ public class TopController extends BorderPane {
   }
 
   public void connectMySQL(ActionEvent e) throws Exception{
-    MysqlConnector connector = new MysqlConnector(
+    MySQLConnector connector = new MySQLConnector(
         hostnameInput.getText(),    usernameInput.getText(),
         passwordInput.getText(),    Integer.parseInt(portInput.getText()),
         sshHostnameInput.getText(), sshUsernameInput.getText(),
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
     );
-    MysqlViewController controller = new MysqlViewController(this.stage);
+    MySQLViewController controller = new MySQLViewController(this.stage);
     SceneComponent.switchScene(stage, controller.pane);
   }
 

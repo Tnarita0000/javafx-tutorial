@@ -5,7 +5,7 @@ import java.util.*;
 import java.sql.*;
 import com.jcraft.jsch.*;
 
-public class MysqlConnector {
+public class MySQLConnector {
   String hostname;
   String username;
   String password;
@@ -17,7 +17,7 @@ public class MysqlConnector {
   static List<String> tables;
   static Connection con;
 
-  public MysqlConnector( String hostname,    String username,    String password, int port,
+  public MySQLConnector( String hostname,    String username,    String password, int port,
       String sshHostname, String sshUsername, String sshPassword, int sshPort) {
     this.hostname = hostname;
     this.username = username;

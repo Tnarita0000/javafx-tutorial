@@ -15,11 +15,11 @@ import javafx.stage.Stage;
 import java.util.*;
 import java.io.IOException;
 
-public class MysqlViewController {
+public class MySQLViewController {
   public static BorderPane pane;
   private Stage stage;
 
-  public MysqlViewController(Stage stage) {
+  public MySQLViewController(Stage stage) {
     this.stage = stage;
     render();
   }
@@ -27,7 +27,7 @@ public class MysqlViewController {
   public static void render() {
     Rectangle2D windowSize = Screen.getPrimary().getVisualBounds();
     pane = new BorderPane();
-    List<String> tableList = MysqlConnector.tables;
+    List<String> tableList = MySQLConnector.tables;
 
     /* header */
     GridPane gridHeader = new GridPane();
