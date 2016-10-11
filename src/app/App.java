@@ -21,8 +21,6 @@ public class App extends Application {
 
   public void sendTopController() {
     TopController controller = new TopController(stage);
-    Scene scene = new Scene(controller);
-    scene.getStylesheets().addAll("./src/stylesheets/application.css");
-    stage.setScene(scene);
+    SceneComponent.switchScene(stage, controller);
   }
 }

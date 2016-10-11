@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class TopController extends BorderPane {
   /* MySQL information */
-  public TextField hostname;     public TextField username;
-  public TextField password;     public TextField port;
+  public TextField hostnameInput;     public TextField usernameInput;
+  public TextField passwordInput;     public TextField portInput;
 
   /* SSH information */
   public Label sshHostnameLabel; public TextField sshHostnameInput;
@@ -26,8 +26,8 @@ public class TopController extends BorderPane {
   public Label sshPasswordLabel; public TextField sshPasswordInput;
 
   /* Stage and Node information */
+  private Stage stage;
   public static BorderPane pane;
-  public Stage stage;
   public RadioButton sshTrue;
   public GridPane gridForm;
   public Button connectButton;
@@ -39,12 +39,14 @@ public class TopController extends BorderPane {
 
   public void connectMySQL(ActionEvent e) throws Exception{
     MysqlConnector connector = new MysqlConnector(
-        hostname.getText(),    username.getText(),
-        password.getText(),    Integer.parseInt(port.getText()),
+        hostnameInput.getText(),    usernameInput.getText(),
+        passwordInput.getText(),    Integer.parseInt(portInput.getText()),
         sshHostnameInput.getText(), sshUsernameInput.getText(),
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
     );
-    sendMysqlViewController();
+
+    MysqlViewController controller = new MysqlViewController(this.stage);
+    SceneComponent.switchScene(stage, controller.pane);
   }
 
   private void loadFXML() {
@@ -78,10 +80,5 @@ public class TopController extends BorderPane {
 
   public int getGridRowSize() {
     return gridForm.getChildren().size()/2;
-  }
-
-  public void sendMysqlViewController() {
-    MysqlViewController controller = new MysqlViewController();
-    stage.getScene().setRoot(controller.pane);
   }
 }
