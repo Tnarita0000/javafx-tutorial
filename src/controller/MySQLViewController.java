@@ -27,7 +27,7 @@ public class MySQLViewController {
   public static void render() {
     Rectangle2D windowSize = Screen.getPrimary().getVisualBounds();
     pane = new BorderPane();
-    List<String> tableList = MySQLConnector.tables;
+    List<String> tableList = MySQLConnector.instance.getDatabases();
 
     /* header */
     GridPane gridHeader = new GridPane();
@@ -51,9 +51,9 @@ public class MySQLViewController {
       vb.getChildren().add(label);
       gridTableList.add(vb, 0, i);
 
-      label.setOnMouseClicked(e -> {
-        System.out.println("hoge");
-      });
+      //vb.setOnMouseClicked(e -> {
+      //  MySQLConnector.getTables(label.getText());
+      //});
     }
 
     pane.setTop(gridHeader);
