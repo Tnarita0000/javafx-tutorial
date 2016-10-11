@@ -14,7 +14,6 @@ public class MySQLConnector {
   private String sshHostname;
   private String sshPassword;
   private int sshPort;
-
   public static Connection con;
   public static MySQLConnector instance;
 
@@ -29,9 +28,12 @@ public class MySQLConnector {
     this.sshPort = sshPort;
     this.sshUsername = sshUsername;
     this.instance = this;
+    MySQLManager manager = new MySQLManager();
+    MySQLSearch  search  = new MySQLSearch();
     try {
       doSshForward();
       connectMysql();
+      manager.setConnection(this.con);
     } catch (Exception e) { e.printStackTrace(); }
   }
 

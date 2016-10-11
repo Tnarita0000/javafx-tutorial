@@ -24,7 +24,7 @@ public class MySQLViewController {
     render();
   }
 
-  public static void render() {
+  public void render() {
     Rectangle2D windowSize = Screen.getPrimary().getVisualBounds();
     pane = new BorderPane();
     List<String> tableList = MySQLSearch.getDatabases(MySQLConnector.con);

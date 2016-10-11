@@ -15,16 +15,14 @@ import java.net.URL;
 import java.io.IOException;
 
 public class TopController extends BorderPane {
-  /* MySQL information */
+  /* MySQL information in FXML */
   public TextField hostnameInput;     public TextField usernameInput;
   public TextField passwordInput;     public TextField portInput;
-
-  /* SSH information */
+  /* SSH information in FXML */
   public Label sshHostnameLabel; public TextField sshHostnameInput;
   public Label sshPortLabel;     public TextField sshPortInput;
   public Label sshUsernameLabel; public TextField sshUsernameInput;
   public Label sshPasswordLabel; public TextField sshPasswordInput;
-
   /* Stage and Node information */
   private Stage stage;
   public static BorderPane pane;
@@ -38,12 +36,12 @@ public class TopController extends BorderPane {
   }
 
   public void connectMySQL(ActionEvent e) throws Exception{
-    MySQLConnector connector = new MySQLConnector(
+    new MySQLConnector(
         hostnameInput.getText(),    usernameInput.getText(),
         passwordInput.getText(),    Integer.parseInt(portInput.getText()),
         sshHostnameInput.getText(), sshUsernameInput.getText(),
         sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
-    );
+        );
     MySQLViewController controller = new MySQLViewController(this.stage);
     SceneComponent.sendScene(stage, controller.pane);
   }
