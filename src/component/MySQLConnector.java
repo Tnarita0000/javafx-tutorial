@@ -35,20 +35,6 @@ public class MySQLConnector {
     } catch (Exception e) { e.printStackTrace(); }
   }
 
-  public List<String> getDatabases() {
-    List<String> databases;
-    databases = new ArrayList<String>();
-    try {
-      PreparedStatement statement = this.con.prepareStatement("show databases;");
-      ResultSet result = statement.executeQuery();
-      while(result.next()) {
-        String database = result.getString("Database");
-        databases.add(database);
-      }
-    } catch (SQLException e) { e.printStackTrace(); }
-    return databases;
-  }
-
   private void connectMysql() {
     try {
       this.con = DriverManager.getConnection(
