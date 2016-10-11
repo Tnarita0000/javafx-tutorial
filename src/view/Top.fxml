@@ -25,19 +25,19 @@
       <children>
         <Label text="Host Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField fx:id="hostname"
+        <TextField fx:id="hostnameInput"
           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         <Label text="User Name:"
           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="username"
+        <TextField fx:id="usernameInput"
           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <Label text="Password:"
           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <PasswordField fx:id="password"
+        <PasswordField fx:id="passwordInput"
           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         <Label text="Port:"
           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField text="3306" fx:id="port"
+        <TextField text="3306" fx:id="portInput"
           GridPane.columnIndex="1" GridPane.rowIndex="3"/>
         <Label text="SSH Port Forwarding:"
           GridPane.columnIndex="0" GridPane.rowIndex="4"/>

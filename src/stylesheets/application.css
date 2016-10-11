@@ -11,6 +11,6 @@
   -fx-border-color: #DDD;
 }
 .table-list:hover{
-  -fx-background-color: #CCFFFF;
-  -fx-border-color: #99CCFF;
+  -fx-background-color: #EEE;
+  -fx-border-color: #CCC;
 }
