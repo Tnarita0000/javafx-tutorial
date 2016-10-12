@@ -1,4 +1,5 @@
 package classes;
+import java.net.Socket;
 import java.util.Properties;
 import java.util.*;
 import java.sql.*;
@@ -36,8 +37,23 @@ public class MySQLConnector {
       session.setConfig(config);
       session.setPassword(sshPassword);
       session.connect();
-      session.setPortForwardingL(MySQLSetting.port, sshHostname, MySQLSetting.port);
+      session.setPortForwardingL("0.0.0.0", unUsedPort(sshHostname), sshHostname, MySQLSetting.port);
       System.out.println("ssh connected !!!");
     } catch (Exception e) { e.printStackTrace(); }
+  }
+
+  private int unUsedPort(String targetHost) {
+    Socket sock    = null;
+    int unUsedPort = 0;
+    for (int port=1024; port<1124; port++) {
+      try{
+        sock = new Socket(targetHost, port);
+        sock.close();
+      } catch( Exception e ) {
+        unUsedPort = port;
+        break;
+      }
+    }
+    return unUsedPort;
   }
 } 
