@@ -50,6 +50,10 @@ public class MysqlViewController {
       label.setStyle("-fx-font: 18px Serif");
       vb.getChildren().add(label);
       gridTableList.add(vb, 0, i);
+
+      label.setOnMouseClicked(e -> {
+        System.out.println("hoge");
+      });
     }
 
     pane.setTop(gridHeader);

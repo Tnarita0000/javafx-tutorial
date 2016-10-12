@@ -3,6 +3,7 @@ package classes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,17 +21,20 @@ import java.util.*;
 import java.io.IOException;
 
 public class TopController extends BorderPane {
-  public TextField hostname;
-  public TextField username;
-  public PasswordField password;
-  public TextField port;
-  public TextField sshHostnameInput;
-  public TextField sshUsernameInput;
-  public PasswordField sshPasswordInput;
-  public TextField sshPortInput;
+  /* MySQL information */
+  public TextField hostname;     public TextField username;
+  public TextField password;     public TextField port;
+
+  /* SSH information */
+  public Label sshHostnameLabel; public TextField sshHostnameInput;
+  public Label sshPortLabel;     public TextField sshPortInput;
+  public Label sshUsernameLabel; public TextField sshUsernameInput;
+  public Label sshPasswordLabel; public TextField sshPasswordInput;
+
+  /* Form information */
   public RadioButton sshTrue;
-  public RadioButton sshFalse;
   public GridPane gridForm;
+  public Button connectButton;
 
   public TopController() {
     loadFXML();
@@ -57,30 +61,27 @@ public class TopController extends BorderPane {
     }
   }
 
-  public void selectSshOption(ActionEvent e) throws Exception {
+  public void selectSshOption(ActionEvent e) {
+    int gridRowCount = gridForm.getChildren().size();
+    int i = 0;
     if (sshTrue.isSelected()) {
-      int gridRowCount = gridForm.getChildren().size();
-      int i = 0;
-      LinkedHashMap<Label, TextField> map = new LinkedHashMap<Label, TextField>();
-      //Label sshHostnameLabel = new Label("SSH Host Name:");
-      //Label sshPortLabel     = new Label("SSH Port:");
-      //Label sshUsernameLabel = new Label("SSH User Name:");
-      //Label sshPasswordLabel = new Label("SSH Password:");
-      //TextField sshHostnameInput = new TextField();
-      //TextField sshPortinput     = new TextField("22");
-      //TextField sshUsernameInput = new TextField();
-      //TextField sshPasswordInput = new PasswordField();
-      map.put(new Label("SSH Host Name:"), new TextField());
-      map.put(new Label("SSH Port:"),      new TextField("22"));
-      map.put(new Label("SSH User Name:"), new TextField());
-      map.put(new Label("SSH Password:"),  new PasswordField());
-      for (Label key : map.keySet())  {
-        gridForm.add(key, 0, gridRowCount + i);
-        gridForm.add(map.get(key), 1, gridRowCount + i);
-        i++;
-      }
+      sshHostnameLabel.setManaged(true);
+      sshHostnameInput.setManaged(true);
+      sshPortLabel.setManaged(true);
+      sshPortInput.setManaged(true);
+      sshUsernameLabel.setManaged(true);
+      sshUsernameInput.setManaged(true);
+      sshPasswordLabel.setManaged(true);
+      sshPasswordInput.setManaged(true);
+
+      gridForm.getChildren().remove(connectButton);
+      gridForm.add(connectButton, 1, getGridRowSize() + 1);
     } else {
-      System.out.println("no");
+      loadFXML();
     }
+  }
+
+  public int getGridRowSize() {
+    return gridForm.getChildren().size()/2;
   }
 }
