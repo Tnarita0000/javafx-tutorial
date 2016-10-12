@@ -27,7 +27,7 @@ public class MySQLViewController {
   public void render() {
     Rectangle2D windowSize = Screen.getPrimary().getVisualBounds();
     pane = new BorderPane();
-    List<String> tableList = MySQLSearch.getDatabases(MySQLConnector.con);
+    List<String> tableList = MySQLSearch.getDatabases(MySQLManager.connector.con);
 
     /* header */
     GridPane gridHeader = new GridPane();
@@ -52,8 +52,8 @@ public class MySQLViewController {
       gridTableList.add(databaseVBox, 0, i);
 
       databaseVBox.setOnMouseClicked(e -> {
-        MySQLConnector.instance.connectDatabase(label.getText());
-        List<String> tables = MySQLSearch.getTables(MySQLConnector.con, label.getText());
+        MySQLManager.connector.connectDatabase(label.getText());
+        List<String> tables = MySQLSearch.getTables(MySQLManager.getConnection(), label.getText());
         tables.forEach( table -> System.out.println(table));
       });
     }

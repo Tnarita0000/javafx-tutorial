@@ -36,12 +36,11 @@ public class TopController extends BorderPane {
   }
 
   public void connectMySQL(ActionEvent e) throws Exception{
-    new MySQLConnector(
-        hostnameInput.getText(),    usernameInput.getText(),
-        passwordInput.getText(),    Integer.parseInt(portInput.getText()),
-        sshHostnameInput.getText(), sshUsernameInput.getText(),
-        sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText())
-        );
+    MySQLManager manager = new MySQLManager();
+    manager.setMySQLInfo(hostnameInput.getText(), usernameInput.getText(), passwordInput.getText(), Integer.parseInt(portInput.getText()));
+    manager.setSSHInfo(sshHostnameInput.getText(), sshUsernameInput.getText(), sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText()));
+    manager.setConnection();
+
     MySQLViewController controller = new MySQLViewController(this.stage);
     SceneComponent.sendScene(stage, controller.pane);
   }
