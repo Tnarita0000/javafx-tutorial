@@ -36,13 +36,17 @@ public class TopController extends BorderPane {
   }
 
   public void connectMySQL(ActionEvent e) throws Exception{
+    int port    = portInput.getText().isEmpty()    ? 0 : Integer.parseInt(portInput.getText());
+    int sshPort = sshPortInput.getText().isEmpty() ? 0 : Integer.parseInt(sshPortInput.getText());
     MySQLManager manager = new MySQLManager();
-    manager.setMySQLInfo(hostnameInput.getText(), usernameInput.getText(), passwordInput.getText(), Integer.parseInt(portInput.getText()));
-    manager.setSSHInfo(sshHostnameInput.getText(), sshUsernameInput.getText(), sshPasswordInput.getText(), Integer.parseInt(sshPortInput.getText()));
+    manager.setMySQLInfo(hostnameInput.getText(), usernameInput.getText(), passwordInput.getText(), port);
+    manager.setSSHInfo(sshHostnameInput.getText(), sshUsernameInput.getText(), sshPasswordInput.getText(), sshPort);
     manager.setConnection();
 
-    MySQLViewController controller = new MySQLViewController(this.stage);
-    SceneComponent.sendScene(stage, controller.pane);
+    if (manager.hasConnection()) {
+      MySQLViewController controller = new MySQLViewController(this.stage);
+      SceneComponent.sendScene(stage, controller.pane);
+    }
   }
 
   private void loadFXML() {

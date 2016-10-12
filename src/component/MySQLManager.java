@@ -3,6 +3,7 @@ import java.util.Properties;
 import java.util.*;
 import java.sql.*;
 import com.jcraft.jsch.*;
+import org.apache.commons.lang3.StringUtils;
 
 /** --- example ---------------------------------------------------------------
  *  MySQLManager manager = new MySQLManager();
@@ -49,11 +50,25 @@ public class MySQLManager {
   }
 
   private boolean isSetedSSHInfo() {
-    return !(MySQLSetting.sshUsername == null || MySQLSetting.sshHostname == null || MySQLSetting.sshPassword == null || MySQLSetting.sshPort == 0);
+    return (
+      StringUtils.isNotBlank(MySQLSetting.sshUsername) &&
+      StringUtils.isNotBlank(MySQLSetting.sshHostname) &&
+      StringUtils.isNotBlank(MySQLSetting.sshPassword) &&
+      MySQLSetting.sshPort != 0
+    );
   }
 
   private boolean isSetedMySQLInfo() {
-    return !(MySQLSetting.username == null || MySQLSetting.hostname == null || MySQLSetting.password == null || MySQLSetting.port == 0);
+    return (
+      StringUtils.isNotBlank(MySQLSetting.username) &&
+      StringUtils.isNotBlank(MySQLSetting.hostname) &&
+      StringUtils.isNotBlank(MySQLSetting.password) &&
+      MySQLSetting.port != 0
+    );
+  }
+
+  public boolean hasConnection() {
+    return (connector.con != null);
   }
 
   private void setDatabases(List<String> databases) {
