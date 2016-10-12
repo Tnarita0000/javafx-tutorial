@@ -1,5 +1,5 @@
 .root {
-  -fx-background-color: #ddd;
+  -fx-background-color: #EEE;
 }
 
 .textfield {
@@ -8,7 +8,7 @@
 
 .table-list {
   -fx-background-color: white;
-  -fx-border-color: #DDD;
+  -fx-border-color: #EEE;
 }
 .table-list:hover{
   -fx-background-color: #EEE;
