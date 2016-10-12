@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.net.URL;
 import java.util.*;
 import java.io.IOException;
 
@@ -51,7 +52,8 @@ public class TopController extends BorderPane {
   }
 
   private void loadFXML() {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("../src/view/Top.fxml"));
+    URL location = App.class.getResource("../src/view/Top.fxml");
+    FXMLLoader fxmlLoader = new FXMLLoader(location);
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
     try {
