@@ -27,7 +27,6 @@ public class MySQLManager {
     }
     if (isSetedMySQLInfo()) {
       connector.connectMysql();
-      connector.connectDatabase("jeek_development");
     }
   }
 
