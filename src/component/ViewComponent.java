@@ -1,4 +1,4 @@
-package classes;
+package sample;
 import javafx.fxml.FXMLLoader;
 import java.net.URL;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class ViewComponent {
   }
 
   public URL getFXMLLocation() {
-    String parentDir = "../view/";
+    String parentDir = "../src/view/";
     String fxmlFile  = this.controller + ".fxml";
     return getClass().getResource(parentDir + fxmlFile);
   }

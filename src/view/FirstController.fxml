@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.* ?>
+<?import javafx.geometry.* ?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.text.* ?>
+<?import javafx.scene.Group ?>
+<?import javafx.event.* ?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<BorderPane fx:id="pane" fx:controller="sample.FirstController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
+  <top>
+    <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
+      <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+      <children>
+        <Label text="Welcome to FirstView!" style="-fx-font: 25px 'Serif'; -fx-text-fill: white"/>
+      </children>
+    </GridPane>
+  </top>
+
+  <center>
+    <GridPane alignment="center">
+      <VBox>
+        <padding><Insets top="35" right="25" bottom="15" left="25"/></padding>
+        <GridPane alignment="center" hgap="10" vgap="10" fx:id="gridForm">
+          <columnConstraints>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0"/>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0" />
+          </columnConstraints>
+          <children>
+            <Label text="Host Name:"
+              GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="hostnameInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="User Name:"
+              GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="usernameInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Password:"
+              GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <PasswordField fx:id="passwordInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Port:"
+              GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField text="3306" fx:id="portInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+          </children>
+        </GridPane>
+
+        <GridPane alignment="center" hgap="10" vgap="10" fx:id="gridForm">
+          <columnConstraints>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0"/>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0" />
+          </columnConstraints>
+          <children>
+            <Label text="SSH Port Forwarding:"
+              GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="0" >
+              <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+              <fx:define> <ToggleGroup fx:id="toggle1"/> </fx:define>
+              <RadioButton fx:id="sshFalse" text="No"  toggleGroup="$toggle1" onAction="#selectSshOption" selected="true"/>
+              <RadioButton fx:id="sshTrue"  text="Yes" toggleGroup="$toggle1" onAction="#selectSshOption" />
+            </HBox>
+          </children>
+        </GridPane>
+
+        <GridPane alignment="center" hgap="10" vgap="10" fx:id="gridSshForm" visible="false" managed="false">
+          <columnConstraints>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0"/>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0" />
+          </columnConstraints>
+          <children>
+            <Label text="SSH Host Name:"
+              GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="sshHostnameInput" prefWidth="100"
+              GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="SSH Port:"
+              GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField text="22" fx:id="sshPortInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="SSH UserName:"
+              GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="sshUsernameInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="SSH Password:"
+              GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <PasswordField fx:id="sshPasswordInput"
+              GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          </children>
+        </GridPane>
+
+        <GridPane alignment="center" hgap="5" vgap="5" fx:id="gridForm">
+          <columnConstraints>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0"/>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0" />
+          </columnConstraints>
+          <children>
+            <Label text="SSL: "
+              GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="0" >
+              <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+              <fx:define> <ToggleGroup fx:id="toggle2"/> </fx:define>
+              <RadioButton fx:id="sslFalse" text="No"  toggleGroup="$toggle2" onAction="#selectSslOption" selected="true"/>
+              <RadioButton fx:id="sslTrue"  text="Yes" toggleGroup="$toggle2" onAction="#selectSslOption" />
+            </HBox>
+          </children>
+        </GridPane>
+
+        <GridPane alignment="center" hgap="5" vgap="5" fx:id="gridSslForm" visible="false" managed="false">
+          <columnConstraints>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0"/>
+            <ColumnConstraints  minWidth="100.0"  prefWidth="200.0" />
+          </columnConstraints>
+          <children>
+            <Label text="CA certificate:"
+              GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextArea fx:id="sslCaInput" 
+              GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          </children>
+        </GridPane>
+
+        <GridPane alignment="center">
+          <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+          <Button text="Connect" onAction="#connectMySQL"/>
+        </GridPane>
+      </VBox>
+    </GridPane>
+  </center>
+
+  <bottom>
+    <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
+      <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+      <children>
+        <Button text="Push Me" onAction="#pushMe"/>
+      </children>
+    </GridPane>
+  </bottom>
+</BorderPane>

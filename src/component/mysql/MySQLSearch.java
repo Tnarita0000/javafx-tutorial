@@ -1,4 +1,4 @@
-package classes;
+package sample;
 import java.util.*;
 import java.util.Properties;
 import java.sql.*;

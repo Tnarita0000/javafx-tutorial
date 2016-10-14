@@ -1,4 +1,4 @@
-package classes;
+package sample;
 public class MySQLSetting {
   /* MySQL information */
   public static String hostname;
