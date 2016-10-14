@@ -39,12 +39,12 @@ public class HomeController {
     manager.setConnection();
 
     if (manager.hasConnection()) {
-      StageComponent.sendScene("SecondController");
+      StageComponent.sendScene("MySQLDBController");
     }
   }
 
   public void pushMe(ActionEvent e) throws Exception {
-    StageComponent.sendScene("SecondController");
+    StageComponent.sendScene("MySQLDBController");
   }
 
   public void selectSshOption(ActionEvent e) throws Exception {

@@ -7,13 +7,13 @@
 <?import javafx.scene.Group ?>
 <?import javafx.event.* ?>
 
-<BorderPane fx:id="pane" fx:controller="sample.SecondController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:id="pane" fx:controller="sample.MySQLDBController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
 
   <top>
     <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
       <children>
-        <Label text="Welcome to SecondView!" style="-fx-font: 25px 'Serif'; -fx-text-fill: white"/>
+        <Label text="Welcome to MySQLDBView!" style="-fx-font: 25px 'Serif'; -fx-text-fill: white"/>
       </children>
     </GridPane>
   </top>
