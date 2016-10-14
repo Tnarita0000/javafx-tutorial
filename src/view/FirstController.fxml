@@ -55,7 +55,7 @@
           <children>
             <Label text="SSH Port Forwarding:"
               GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="0" >
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="30" >
               <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
               <fx:define> <ToggleGroup fx:id="toggle1"/> </fx:define>
               <RadioButton fx:id="sshFalse" text="No"  toggleGroup="$toggle1" onAction="#selectSshOption" selected="true"/>
@@ -97,7 +97,7 @@
           <children>
             <Label text="SSL: "
               GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="0" >
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="30" >
               <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
               <fx:define> <ToggleGroup fx:id="toggle2"/> </fx:define>
               <RadioButton fx:id="sslFalse" text="No"  toggleGroup="$toggle2" onAction="#selectSslOption" selected="true"/>

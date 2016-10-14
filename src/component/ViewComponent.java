@@ -18,6 +18,8 @@ public class ViewComponent {
     try {
       Parent root  = FXMLLoader.load(getFXMLLocation());
       this.scene = new Scene(root);
+      if (getStylesheetLocation() != null)
+        scene.getStylesheets().add(getStylesheetLocation().toExternalForm());
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
@@ -27,6 +29,12 @@ public class ViewComponent {
     String parentDir = "../src/view/";
     String fxmlFile  = this.controller + ".fxml";
     return getClass().getResource(parentDir + fxmlFile);
+  }
+
+  public URL getStylesheetLocation() {
+    String parentDir = "../src/stylesheets/";
+    String cssFile   = this.controller + ".css";
+    return getClass().getResource(parentDir + cssFile);
   }
 
   public Scene getScene() {
