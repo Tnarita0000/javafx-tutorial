@@ -9,7 +9,7 @@ public class StageComponent {
   StageComponent(Stage primaryStage) {
     this.stage = primaryStage;
     this.stage.setMaximized(true);
-    sendScene("FirstController");
+    sendScene("HomeController");
   }
 
   public static void sendScene(String controllerName) {

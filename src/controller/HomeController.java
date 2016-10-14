@@ -16,7 +16,7 @@ import java.net.URL;
 import java.io.IOException;
 import javafx.scene.layout.ColumnConstraints;
 
-public class FirstController {
+public class HomeController {
   /* Pane */
   public GridPane gridForm;
   public GridPane gridSshForm;
