@@ -8,7 +8,7 @@ public class StageComponent {
 
   StageComponent(Stage primaryStage) {
     this.stage = primaryStage;
-    this.stage.setMaximized(true);
+    //this.stage.setMaximized(true); // Full display
     sendScene("HomeController");
   }
 
