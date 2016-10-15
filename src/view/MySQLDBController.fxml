@@ -6,25 +6,22 @@
 <?import javafx.scene.text.* ?>
 <?import javafx.scene.Group ?>
 <?import javafx.event.* ?>
+<?import javafx.collections.FXCollections ?>
+<?import java.lang.String ?>
 
 <BorderPane fx:id="pane" fx:controller="sample.MySQLDBController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
-
   <top>
-    <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
+    <BorderPane style="-fx-background-color: black;">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
-      <children>
-        <Label text="Welcome to MySQLDBView!" style="-fx-font: 25px 'Serif'; -fx-text-fill: white"/>
-      </children>
-    </GridPane>
+      <left>
+        <ComboBox value="Select Database" fx:id="databases">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:id="sample"/>
+            </FXCollections>
+          </items>
+        </ComboBox>
+      </left>
+    </BorderPane>
   </top>
-  <center>
-    <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
-      <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
-      <children>
-        <Button text="Push Me" onAction="#pushMe"/>
-      </children>
-    </GridPane>
-  </center>
-
-
 </BorderPane>
