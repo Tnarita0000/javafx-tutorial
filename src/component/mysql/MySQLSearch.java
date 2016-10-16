@@ -42,5 +42,4 @@ public class MySQLSearch {
     } catch (SQLException e) { e.printStackTrace(); }
     return tables;
   }
-
 }

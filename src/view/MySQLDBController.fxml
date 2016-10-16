@@ -33,6 +33,14 @@
           </items>
         </ListView>
       </left>
+      <center>
+        <TableView fx:id="columns">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+            </FXCollections>
+          </items>
+        </TableView>
+      </center>
     </BorderPane>
   </center>
 </BorderPane>
