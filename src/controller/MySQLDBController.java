@@ -20,7 +20,7 @@ public class MySQLDBController implements Initializable{
   @FXML
   ListView tables;
   @FXML
-  TableView columns;
+  TableView columnsTable;
 
   public void selectDatabase(ActionEvent e) {
     String dbName = databasesComboBox.getValue().toString();
@@ -47,13 +47,16 @@ public class MySQLDBController implements Initializable{
     tables.setOnMouseClicked((MouseEvent)-> {
       String tableName = tables.getSelectionModel().getSelectedItem().toString();
       List<String> columnList = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
-      List<String> contentList= MySQLSearch.query("SELECT * FROM "+tableName);
       for(String column : columnList) {
-        System.out.println(column);
-        TableColumn<Void, Void> col = new TableColumn<>(column);
-        columns.getColumns().add(col);
+        //TableColumn<Void, String> col = new TableColumn<>(column);
+        TableColumn<String, Void> col = new TableColumn(column);
+        columnsTable.getColumns().add(col);
+
+        List<String> contentList= MySQLSearch.query("SELECT "+column+" FROM "+tableName, column);
+        for(String content : contentList) {
+          columnsTable.getItems().add(content);
+        }
       }
     });
   }
-
 }

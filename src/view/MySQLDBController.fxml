@@ -34,7 +34,7 @@
         </ListView>
       </left>
       <center>
-        <TableView fx:id="columns">
+        <TableView fx:id="columnsTable">
           <items>
             <FXCollections fx:factory="observableArrayList">
             </FXCollections>
