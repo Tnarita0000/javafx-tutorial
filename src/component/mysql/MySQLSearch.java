@@ -8,38 +8,17 @@ import com.mysql.jdbc.JDBC42ResultSet;
 public class MySQLSearch {
   static MySQLConnector connector = MySQLManager.connector;
 
-  public static ResultSet query(String query) {
+  public static List<String> query(String query, String columnName) {
+    List<String> results  = new ArrayList<String>();
     ResultSet queryResult = null;
     try {
       PreparedStatement statement = connector.con.prepareStatement(query);
       queryResult = statement.executeQuery();
-    } catch (SQLException e) { e.printStackTrace(); }
-    return queryResult;
-  }
-
-  public static List<String> getDatabases() {
-    List<String> databases = new ArrayList<String>();
-    try {
-      PreparedStatement statement = connector.con.prepareStatement("SHOW DATABASES");
-      ResultSet queryResult = statement.executeQuery();
       while(queryResult.next()) {
-        String database = queryResult.getString("Database");
-        databases.add(database);
+        String result = queryResult.getString(columnName);
+        results.add(result);
       }
     } catch (SQLException e) { e.printStackTrace(); }
-    return databases;
-  }
-
-  public static List<String> getTables(String databaseName) {
-    List<String> tables = new ArrayList<String>();
-    try {
-      PreparedStatement statement = connector.con.prepareStatement("SHOW TABLES");
-      ResultSet queryResult = statement.executeQuery();
-      while(queryResult.next()) {
-        String table = queryResult.getString("Tables_in_" + databaseName);
-        tables.add(table);
-      }
-    } catch (SQLException e) { e.printStackTrace(); }
-    return tables;
+    return results;
   }
 }
