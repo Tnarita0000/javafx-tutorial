@@ -23,4 +23,16 @@
       </left>
     </BorderPane>
   </top>
+  <center>
+    <BorderPane>
+      <left>
+        <ListView fx:id="tables">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+            </FXCollections>
+          </items>
+        </ListView>
+      </left>
+    </BorderPane>
+  </center>
 </BorderPane>

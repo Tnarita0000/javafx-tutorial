@@ -17,7 +17,7 @@ public class MySQLSearch {
     return queryResult;
   }
 
-  public static List<String> databases() {
+  public static List<String> getDatabases() {
     List<String> databases = new ArrayList<String>();
     try {
       PreparedStatement statement = connector.con.prepareStatement("SHOW DATABASES");
@@ -30,13 +30,17 @@ public class MySQLSearch {
     return databases;
   }
 
-  //public static String getTable(String databaseName) {
-  //  List<String> tables = new ArrayList<String>();
-  //  while(result.next()) {
-  //    String table = result.getString("Tables_in_" + databaseName);
-  //    tables.add(table);
-  //  }
-  //  return tables;
-  //}
+  public static List<String> getTables(String databaseName) {
+    List<String> tables = new ArrayList<String>();
+    try {
+      PreparedStatement statement = connector.con.prepareStatement("SHOW TABLES");
+      ResultSet queryResult = statement.executeQuery();
+      while(queryResult.next()) {
+        String table = queryResult.getString("Tables_in_" + databaseName);
+        tables.add(table);
+      }
+    } catch (SQLException e) { e.printStackTrace(); }
+    return tables;
+  }
 
 }
