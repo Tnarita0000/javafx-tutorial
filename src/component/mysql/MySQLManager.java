@@ -70,14 +70,4 @@ public class MySQLManager {
   public boolean hasConnection() {
     return (connector.con != null);
   }
-
-  private void setDatabases(List<String> databases) {
-    this.databases = new ArrayList<String>();
-    this.databases = databases;
-  }
-
-  private void setTables(List<String> tables) {
-    this.tables = new ArrayList<String>();
-    this.tables = tables;
-  }
 }

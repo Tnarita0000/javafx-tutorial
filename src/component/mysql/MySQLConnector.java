@@ -8,8 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MySQLConnector {
   private static boolean sshFlag = false;
-  public Connection con;
-  public String tunnelPort;
+  private String tunnelPort;
+  public  Connection con;
 
   public void connectMysql() {
     String targetHost = ""; 

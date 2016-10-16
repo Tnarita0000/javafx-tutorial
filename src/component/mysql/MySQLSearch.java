@@ -3,28 +3,32 @@ import java.util.*;
 import java.util.Properties;
 import java.sql.*;
 import com.jcraft.jsch.*;
+import com.mysql.jdbc.JDBC42ResultSet;
+
 public class MySQLSearch {
-  public MySQLConnector connector = MySQLManager.connector;
+  static MySQLConnector connector = MySQLManager.connector;
 
-  //public static JDBC42ResultSet query(String query) {
-  //  List<String> result = new ArrayList<String>();
-  //  try {
-  //    PreparedStatement statement = connector.prepareStatement(query);
-  //    ResultSet queryResult       = statement.executeQuery();
-  //    while(queryResult.next()) {
-  //      String result = queryResult.getString();
-  //    }
-  //  } catch (SQLException e) { e.printStackTrace(); }
-  //}
+  public static ResultSet query(String query) {
+    ResultSet queryResult = null;
+    try {
+      PreparedStatement statement = connector.con.prepareStatement(query);
+      queryResult = statement.executeQuery();
+    } catch (SQLException e) { e.printStackTrace(); }
+    return queryResult;
+  }
 
-  //public static List<String> databases() {
-  //  List<String> databases = new ArrayList<String>();
-  //  while(result.next()) {
-  //    String database = result.getString("Database");
-  //    databases.add(database);
-  //  }
-  //  return databases;
-  //}
+  public static List<String> databases() {
+    List<String> databases = new ArrayList<String>();
+    try {
+      PreparedStatement statement = connector.con.prepareStatement("SHOW DATABASES");
+      ResultSet queryResult = statement.executeQuery();
+      while(queryResult.next()) {
+        String database = queryResult.getString("Database");
+        databases.add(database);
+      }
+    } catch (SQLException e) { e.printStackTrace(); }
+    return databases;
+  }
 
   //public static String getTable(String databaseName) {
   //  List<String> tables = new ArrayList<String>();

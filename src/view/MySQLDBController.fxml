@@ -14,10 +14,9 @@
     <BorderPane style="-fx-background-color: black;">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
       <left>
-        <ComboBox value="Select Database" fx:id="databases">
+        <ComboBox value="Select Database" fx:id="databases" onAction="#selectDatabase">
           <items>
             <FXCollections fx:factory="observableArrayList">
-              <String fx:id="sample"/>
             </FXCollections>
           </items>
         </ComboBox>

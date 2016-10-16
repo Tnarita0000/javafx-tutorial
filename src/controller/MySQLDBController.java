@@ -1,7 +1,9 @@
 package sample;
 import java.net.URL;
+import java.sql.*;
 import java.io.IOException;
 import java.util.ResourceBundle;
+import java.util.*;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -14,20 +16,17 @@ public class MySQLDBController implements Initializable{
   @FXML
   ComboBox databases;
 
-  public void pushMe(ActionEvent e) {
-    System.out.println("Pushed Me");
+  public void selectDatabase(ActionEvent e) {
+    System.out.println(databases.getValue());
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    System.out.println(databases);
-    ObservableList<String> options = FXCollections.observableArrayList(
-      "Select Database",
-      "Option 1",
-      "Option 2",
-      "Option 3"
-    );
-    databases.setItems(options);
+    databases.setItems(FXCollections.observableArrayList());
+    List<String> queryResult = MySQLSearch.databases();
+    for(String database : queryResult) {
+      databases.getItems().add(database);
+    }
   }
 
 
