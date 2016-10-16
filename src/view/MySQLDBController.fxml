@@ -35,10 +35,6 @@
       </left>
       <center>
         <TableView fx:id="columnTable">
-          <items>
-            <FXCollections fx:factory="observableArrayList">
-            </FXCollections>
-          </items>
         </TableView>
       </center>
     </BorderPane>

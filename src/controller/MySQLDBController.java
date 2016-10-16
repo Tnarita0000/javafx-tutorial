@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MySQLDBController implements Initializable{
   @FXML
@@ -45,22 +46,25 @@ public class MySQLDBController implements Initializable{
 
     /* when clicked table name in ListView */
     tableList.setOnMouseClicked((MouseEvent)-> {
-      /* set column name */
       String tableName = tableList.getSelectionModel().getSelectedItem().toString();
-      List<String> columnList = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
-      ObservableList<Column> columns = FXCollections.observableArrayList();
-      for(String column : columnList) {
-        columns.add(new Column(column));
-      }
-      columnTable.setItems(columns);
-
-      /* set content on any column in TableView */
-      ArrayList<ArrayList<String>> recordList = MySQLSearch.query("SELECT * FROM "+tableName);
-      for(int rowCount=0; rowCount < recordList.size(); rowCount++) {
-        for(int columnIndex=0; columnIndex < recordList.get(rowCount).size(); columnIndex++) {
-          System.out.println(recordList.get(rowCount).get(columnIndex));
-        }
-      }
+      setColumns(tableName);
+      setRows(tableName);
     });
+  }
+
+  public void setColumns(String tableName) {
+    List<String> columnList = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
+    for(String column : columnList) {
+      TableColumn tableCol = new TableColumn(column);
+      tableCol.setCellValueFactory(new PropertyValueFactory<>(column));
+      columnTable.getColumns().add(tableCol);
+    }
+  }
+
+  public void setRows(String tableName) {
+    ArrayList<ArrayList<String>> recordList = MySQLSearch.query("SELECT * FROM "+tableName);
+    for(int rowCount=0; rowCount < recordList.size(); rowCount++) {
+      System.out.println(recordList.get(rowCount));
+    }
   }
 }
