@@ -16,45 +16,49 @@ import javafx.collections.FXCollections;
 
 public class MySQLDBController implements Initializable{
   @FXML
-  ComboBox databasesComboBox;
+  ComboBox databaseComboBox;
   @FXML
-  ListView tables;
+  ListView tableList;
   @FXML
-  TableView columnsTable;
+  TableView columnTable;
 
   public void selectDatabase(ActionEvent e) {
-    String dbName = databasesComboBox.getValue().toString();
+    String dbName = databaseComboBox.getValue().toString();
     MySQLManager.connector.connectDatabase(dbName);
 
     /* set table list after cleared tables list in ListView */
-    tables.setItems(FXCollections.observableArrayList());
+    tableList.setItems(FXCollections.observableArrayList());
     List<String> queryResult = MySQLSearch.query("SHOW TABLES", "Tables_in_"+dbName);
     for(String table : queryResult) {
-      tables.getItems().add(table);
+      tableList.getItems().add(table);
     }
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     /* set database list to ListView */
-    databasesComboBox.setItems(FXCollections.observableArrayList());
+    databaseComboBox.setItems(FXCollections.observableArrayList());
     List<String> databaseList = MySQLSearch.query("SHOW DATABASES", "Database");
     for(String database : databaseList) {
-      databasesComboBox.getItems().add(database);
+      databaseComboBox.getItems().add(database);
     }
 
-    /* set TableView after clicked table name in ListView */
-    tables.setOnMouseClicked((MouseEvent)-> {
-      String tableName = tables.getSelectionModel().getSelectedItem().toString();
+    /* when clicked table name in ListView */
+    tableList.setOnMouseClicked((MouseEvent)-> {
+      /* set column name */
+      String tableName = tableList.getSelectionModel().getSelectedItem().toString();
       List<String> columnList = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
+      ObservableList<Column> columns = FXCollections.observableArrayList();
       for(String column : columnList) {
-        //TableColumn<Void, String> col = new TableColumn<>(column);
-        TableColumn<String, Void> col = new TableColumn(column);
-        columnsTable.getColumns().add(col);
+        columns.add(new Column(column));
+      }
+      columnTable.setItems(columns);
 
-        List<String> contentList= MySQLSearch.query("SELECT "+column+" FROM "+tableName, column);
-        for(String content : contentList) {
-          columnsTable.getItems().add(content);
+      /* set content on any column in TableView */
+      ArrayList<ArrayList<String>> recordList = MySQLSearch.query("SELECT * FROM "+tableName);
+      for(int rowCount=0; rowCount < recordList.size(); rowCount++) {
+        for(int columnIndex=0; columnIndex < recordList.get(rowCount).size(); columnIndex++) {
+          System.out.println(recordList.get(rowCount).get(columnIndex));
         }
       }
     });
