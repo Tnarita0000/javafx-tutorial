@@ -59,26 +59,27 @@ public class MySQLDBController implements Initializable{
 
   public void setContents(String tableName) {
     /* set columns */
-    List<String> columnList = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
-    for(String column : columnList) {
-      TableColumn<Record, String> tableCol = new TableColumn<Record, String>(column);
-      tableCol.setCellValueFactory(new Callback<CellDataFeatures<Record, String>, ObservableValue<String>>() {
+    List<String> columns = MySQLSearch.query("SHOW COLUMNS FROM "+tableName, "Field");
+    for(String column : columns) {
+      TableColumn<Record, String> tableColumn = new TableColumn<Record, String>(column);
+      tableColumn.setPrefWidth(100);
+      tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Record, String>, ObservableValue<String>>() {
         @Override
         public ObservableValue<String> call(CellDataFeatures<Record, String> p) {
           return new SimpleStringProperty(p.getValue().getData(column));
         }
       });
-      columnTable.getColumns().add(tableCol);
+      columnTable.getColumns().add(tableColumn);
     }
 
     /* set records */
     ArrayList<ArrayList<String>> recordList = MySQLSearch.query("SELECT * FROM "+tableName);
     for(int rowCount=0; rowCount < recordList.size(); rowCount++) {
-      Map<String, String> record = new HashMap<String, String>();
-      for(int index=0; index<columnList.size(); index++) {
-        record.put(columnList.get(index), recordList.get(rowCount).get(index));
+      Map<String, String> tableRecord = new HashMap<String, String>();
+      for(int index=0; index<columns.size(); index++) {
+        tableRecord.put(columns.get(index), recordList.get(rowCount).get(index));
       }
-      columnTable.getItems().add(new Record().setData(record));
+      columnTable.getItems().add(new Record().setData(tableRecord));
     }
   }
 }

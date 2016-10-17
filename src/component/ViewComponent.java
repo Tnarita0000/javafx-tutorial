@@ -17,7 +17,7 @@ public class ViewComponent {
   public void loadFXML() {
     try {
       Parent root  = FXMLLoader.load(getFXMLLocation());
-      this.scene = new Scene(root, 850, 650); /* width: 850, height: 650 */
+      this.scene = new Scene(root, 850, 750); /* width: 850, height: 650 */
       if (getStylesheetLocation() != null)
         scene.getStylesheets().add(getStylesheetLocation().toExternalForm());
     } catch (IOException exception) {
