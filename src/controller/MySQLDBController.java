@@ -50,6 +50,8 @@ public class MySQLDBController implements Initializable{
 
     /* when clicked table name in ListView */
     tableList.setOnMouseClicked((MouseEvent)-> {
+      columnTable.getColumns().clear();
+      columnTable.getItems().clear();
       String tableName = tableList.getSelectionModel().getSelectedItem().toString();
       setContents(tableName);
     });
@@ -74,7 +76,6 @@ public class MySQLDBController implements Initializable{
     for(int rowCount=0; rowCount < recordList.size(); rowCount++) {
       Map<String, String> record = new HashMap<String, String>();
       for(int index=0; index<columnList.size(); index++) {
-        System.out.println(recordList.get(rowCount).get(index));
         record.put(columnList.get(index), recordList.get(rowCount).get(index));
       }
       columnTable.getItems().add(new Record().setData(record));
