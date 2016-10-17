@@ -21,18 +21,17 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class MySQLDBController implements Initializable{
   @FXML
-  ComboBox databaseComboBox;
+  ComboBox<String> databaseComboBox;
   @FXML
-  ListView tableList;
+  ListView<String> tableList;
   @FXML
-  TableView columnTable;
+  TableView<Record> columnTable;
 
   public void selectDatabase(ActionEvent e) {
     String dbName = databaseComboBox.getValue().toString();
     MySQLManager.connector.connectDatabase(dbName);
 
     /* set table list after cleared tables list in ListView */
-    tableList.setItems(FXCollections.observableArrayList());
     List<String> queryResult = MySQLSearch.query("SHOW TABLES", "Tables_in_"+dbName);
     for(String table : queryResult) {
       tableList.getItems().add(table);
@@ -42,7 +41,6 @@ public class MySQLDBController implements Initializable{
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     /* set database list to ListView */
-    databaseComboBox.setItems(FXCollections.observableArrayList());
     List<String> databaseList = MySQLSearch.query("SHOW DATABASES", "Database");
     for(String database : databaseList) {
       databaseComboBox.getItems().add(database);
