@@ -12,18 +12,9 @@ public class MySQLConnector {
   public  Connection con;
 
   public void connectMysql() {
-    String targetHost = ""; 
-    String targetPort = "";
-    if(sshFlag) {
-      targetPort = this.tunnelPort;
-      targetHost = "localhost";
-    } else {
-      targetPort = String.valueOf(MySQLSetting.port);
-      targetHost = MySQLSetting.hostname;
-    }
     try {
       this.con = DriverManager.getConnection(
-        "jdbc:mysql://"+targetHost+":"+targetPort+"/", MySQLSetting.username, MySQLSetting.password
+        "jdbc:mysql://" + target(), MySQLSetting.username, MySQLSetting.password
       );
       System.out.println("mysql connected !!!");
     } catch (SQLException e) { e.printStackTrace(); }
@@ -32,9 +23,7 @@ public class MySQLConnector {
   public void connectDatabase(String databaseName) {
     try {
       this.con = DriverManager.getConnection(
-        "jdbc:mysql://" + MySQLSetting.hostname + "/" + databaseName,
-        MySQLSetting.username,
-        MySQLSetting.password
+        "jdbc:mysql://" + target() + databaseName, MySQLSetting.username, MySQLSetting.password
       );
       System.out.println("databasse connected !!!");
     } catch (SQLException e) { e.printStackTrace(); }
@@ -69,5 +58,18 @@ public class MySQLConnector {
       }
     }
     return unUsedPort;
+  }
+
+  public String target() {
+    String targetHost = ""; 
+    String targetPort = "";
+    if(sshFlag) {
+      targetPort = this.tunnelPort;
+      targetHost = "localhost";
+    } else {
+      targetPort = String.valueOf(MySQLSetting.port);
+      targetHost = MySQLSetting.hostname;
+    }
+    return targetHost + ":" + targetPort + "/";
   }
 } 
