@@ -8,10 +8,11 @@ import com.mysql.jdbc.JDBC42ResultSet;
 public class MySQLSearch {
 
   public static List<String> query(String query, String columnName) {
+    Connection connector       = MySQLManager.getConnection();
     List<String> results       = new ArrayList<String>();
     ResultSet queryResult      = null;
     try {
-      PreparedStatement statement = MySQLManager.connector.con.prepareStatement(query);
+      PreparedStatement statement = connector.prepareStatement(query);
       queryResult                 = statement.executeQuery();
       while(queryResult.next()) {
         results.add(queryResult.getString(columnName));
@@ -21,11 +22,12 @@ public class MySQLSearch {
   }
 
   public static ArrayList<ArrayList<String>> query(String query) {
+    Connection connector       = MySQLManager.getConnection();
     ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
     ResultSet queryResult                = null;
     ResultSetMetaData metaData           = null;
     try {
-      PreparedStatement statement = MySQLManager.connector.con.prepareStatement(query);
+      PreparedStatement statement = connector.prepareStatement(query);
       queryResult                 = statement.executeQuery();
       metaData                    = statement.getMetaData();
       int columnCount             = metaData.getColumnCount();
