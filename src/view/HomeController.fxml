@@ -126,13 +126,4 @@
       </VBox>
     </GridPane>
   </center>
-
-  <bottom>
-    <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
-      <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
-      <children>
-        <Button text="Push Me" onAction="#pushMe"/>
-      </children>
-    </GridPane>
-  </bottom>
 </BorderPane>
