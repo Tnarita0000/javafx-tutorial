@@ -29,6 +29,13 @@
   -fx-cell-hover-color: derive(-fx-control-inner-background, -20%);
   -fx-table-cell-border-color: #555;
 }
+.table-view .column-header, .table-view .filler {
+  -fx-background-color: #DDD;
+  -fx-border-color: #777;
+  -fx-border-width: 0 1 0 0;
+  -fx-border-insets: 0;
+}
+
 .table-view .cell {
   -fx-text-fill: white;
 }

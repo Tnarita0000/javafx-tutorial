@@ -32,6 +32,8 @@ public class MySQLDBController implements Initializable{
     MySQLManager.connector.connectDatabase(dbName);
 
     tableList.getItems().clear();
+    columnTable.getColumns().clear();
+    columnTable.getItems().clear();
     /* set table list after cleared tables list in ListView */
     List<String> queryResult = MySQLSearch.query("SHOW TABLES", "Tables_in_"+dbName);
     for(String table : queryResult) {
