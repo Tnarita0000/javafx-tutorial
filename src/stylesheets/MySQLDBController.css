@@ -24,7 +24,7 @@
 
 
 .table-view {
-  -fx-background-color: linear-gradient(#777 0%, #222 100%);
+  -fx-background-color: #333;
   -fx-accent: derive(-fx-control-inner-background, -40%);
   -fx-cell-hover-color: derive(-fx-control-inner-background, -20%);
   -fx-table-cell-border-color: #555;

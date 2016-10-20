@@ -119,9 +119,11 @@
           </children>
         </GridPane>
 
-        <GridPane alignment="center">
+        <GridPane alignment="center" hgap="5">
           <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
-          <Button text="Connect" onAction="#connectMySQL"/>
+          <Button text="Connect" onAction="#connectMySQL" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+          <Button text="Save Connection" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+          <Button text="Test Connection" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
         </GridPane>
       </VBox>
     </GridPane>
