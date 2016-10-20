@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.InputEvent;
 import javafx.scene.Parent;
 import javafx.scene.Group;
 import javafx.stage.Stage;
@@ -40,6 +43,15 @@ public class HomeController {
 
     if (manager.hasConnection()) {
       StageComponent.sendScene("MySQLDBController");
+    }
+  }
+
+  public void pressEnter(InputEvent e) {
+    if(e instanceof KeyEvent) {
+      KeyEvent kEvent = (KeyEvent) e;
+      if(kEvent.getCode() == KeyCode.ENTER) {
+        System.out.println("enter pressed");
+      }
     }
   }
 
