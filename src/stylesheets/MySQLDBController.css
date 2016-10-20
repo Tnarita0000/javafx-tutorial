@@ -61,3 +61,13 @@
   -fx-background-insets: 0;
   -fx-background-radius: 1;
 }
+
+.list-view {
+  -fx-background-color: #DDD;
+}
+.list-view .list-cell {
+  -fx-background-color: #EEE;
+}
+.list-view .list-cell:odd {
+  -fx-background-color: #DDD;
+}
