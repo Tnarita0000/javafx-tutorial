@@ -19,7 +19,7 @@ import javafx.util.Callback;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.property.SimpleStringProperty;
 
-public class MySQLDBController implements Initializable{
+public class DashboardController implements Initializable{
   @FXML
   ComboBox<String> databaseComboBox;
   @FXML

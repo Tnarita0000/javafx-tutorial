@@ -9,7 +9,7 @@
 <?import javafx.collections.FXCollections ?>
 <?import java.lang.String ?>
 
-<BorderPane fx:id="pane" fx:controller="sample.MySQLDBController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:id="pane" fx:controller="sample.DashboardController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
   <top>
     <BorderPane style="-fx-background-color: black;">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
