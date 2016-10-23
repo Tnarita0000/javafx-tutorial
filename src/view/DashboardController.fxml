@@ -25,11 +25,18 @@
       </left>
 
       <right>
-        <Button style="-fx-background-color: transparent">
-          <graphic>
-            <ImageView fx:id="queryConsole" style="-fx-opacity: 0.5"/>
-          </graphic>
-        </Button>
+        <HBox>
+          <Button>
+            <graphic>
+              <ImageView fx:id="rowImage"/>
+            </graphic>
+          </Button>
+          <Button onAction="#selectConsole">
+            <graphic>
+              <ImageView fx:id="queryConsoleImage"/>
+            </graphic>
+          </Button>
+        </HBox>
       </right>
     </BorderPane>
   </top>

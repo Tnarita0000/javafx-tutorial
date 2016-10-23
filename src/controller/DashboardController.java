@@ -29,7 +29,9 @@ public class DashboardController implements Initializable{
   @FXML
   TableView<Record> columnTable;
   @FXML
-  ImageView queryConsole;
+  ImageView queryConsoleImage;
+  @FXML
+  ImageView rowImage;
 
   public void selectDatabase(ActionEvent e) {
     String dbName = databaseComboBox.getValue().toString();
@@ -43,6 +45,10 @@ public class DashboardController implements Initializable{
     for(String table : queryResult) {
       tableList.getItems().add(table);
     }
+  }
+
+  public void selectConsole(ActionEvent e) {
+    StageComponent.sendScene("QueryConsoleController");
   }
 
   @Override
@@ -91,11 +97,12 @@ public class DashboardController implements Initializable{
   }
 
   public void setIcons() {
-    URL iconLocation = getClass().getResource("../public/images/query_console_icon.png");
-    Image queryIcon = new Image(iconLocation.toString(), true);
-    queryConsole.setImage(queryIcon);
+    URL consoleIconLocation = getClass().getResource("../public/images/query_console_icon.png");
+    Image queryIcon = new Image(consoleIconLocation.toString(), true);
+    queryConsoleImage.setImage(queryIcon);
 
-    URL databaseIconPath = getClass().getResource("../public/images/database_icon.png");
-    Image databaseIcon = new Image(databaseIconPath.toString(), true);
+    URL rowIconLocation = getClass().getResource("../public/images/rows_icon.png");
+    Image rowIcon = new Image(rowIconLocation.toString(), true);
+    rowImage.setImage(rowIcon);
   }
 }
