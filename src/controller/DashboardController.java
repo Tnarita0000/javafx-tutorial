@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.util.Callback;
@@ -26,6 +28,8 @@ public class DashboardController implements Initializable{
   ListView<String> tableList;
   @FXML
   TableView<Record> columnTable;
+  @FXML
+  ImageView queryConsole;
 
   public void selectDatabase(ActionEvent e) {
     String dbName = databaseComboBox.getValue().toString();
@@ -56,6 +60,8 @@ public class DashboardController implements Initializable{
       String tableName = tableList.getSelectionModel().getSelectedItem().toString();
       setContents(tableName);
     });
+
+    setIcons();
   }
 
   public void setContents(String tableName) {
@@ -82,5 +88,14 @@ public class DashboardController implements Initializable{
       }
       columnTable.getItems().add(new Record().setData(tableRecord));
     }
+  }
+
+  public void setIcons() {
+    URL iconLocation = getClass().getResource("../public/images/query_console_icon.png");
+    Image queryIcon = new Image(iconLocation.toString(), true);
+    queryConsole.setImage(queryIcon);
+
+    URL databaseIconPath = getClass().getResource("../public/images/database_icon.png");
+    Image databaseIcon = new Image(databaseIconPath.toString(), true);
   }
 }

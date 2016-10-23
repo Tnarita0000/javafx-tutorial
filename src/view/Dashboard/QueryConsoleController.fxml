@@ -5,8 +5,6 @@
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.text.* ?>
 <?import javafx.scene.Group ?>
-<?import javafx.scene.image.Image ?>
-<?import javafx.scene.image.ImageView ?>
 <?import javafx.event.* ?>
 <?import javafx.collections.FXCollections ?>
 <?import java.lang.String ?>
@@ -23,14 +21,6 @@
           </items>
         </ComboBox>
       </left>
-
-      <right>
-        <Button style="-fx-background-color: transparent">
-          <graphic>
-            <ImageView fx:id="queryConsole" style="-fx-opacity: 0.5"/>
-          </graphic>
-        </Button>
-      </right>
     </BorderPane>
   </top>
   <center>
