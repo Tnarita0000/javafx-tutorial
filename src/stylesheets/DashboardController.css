@@ -80,9 +80,13 @@
 
 .button {
   -fx-background-color: transparent;
-  -fx-opacity: 0.6;
+  -fx-opacity: 0.5;
 }
 
 .button:hover {
   -fx-opacity: 1;
+}
+
+.btn-current {
+  -fx-opacity: 1
 }
