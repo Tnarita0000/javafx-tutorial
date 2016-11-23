@@ -1,4 +1,4 @@
-package sample;
+package fxapp.manager;
 import java.util.*;
 import java.util.Properties;
 import java.sql.*;

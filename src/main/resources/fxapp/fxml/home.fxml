@@ -9,7 +9,7 @@
 <?import javafx.event.* ?>
 <?import javafx.scene.layout.ColumnConstraints?>
 
-<BorderPane fx:id="pane" fx:controller="sample.HomeController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:controller="fxapp.controller.HomeController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
   <top>
     <GridPane alignment="center" hgap="10" vgap="10" style="-fx-background-color: black;">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
@@ -31,7 +31,7 @@
           <children>
             <Label text="Host Name:"
               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="hostnameInput"
+            <TextField text="localhost" fx:id="hostnameInput"
               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <Label text="User Name:"
               GridPane.columnIndex="0" GridPane.rowIndex="1"/>

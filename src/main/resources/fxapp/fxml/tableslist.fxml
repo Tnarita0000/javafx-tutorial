@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.* ?>
+<?import javafx.geometry.* ?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.text.* ?>
+<?import javafx.scene.Group ?>
+<?import javafx.event.* ?>
+<?import javafx.collections.FXCollections ?>
+
+<BorderPane fx:controller="fxapp.controller.dashboard.TablesListController" xmlns:fx="http://javafx.com/fxml">
+  <left>
+    <ListView fx:id="tableList" maxWidth="Infinity">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+        </FXCollections>
+      </items>
+    </ListView>
+  </left>
+  <center>
+    <fx:include fx:id="recordsTable" source="/fxapp/fxml/recordstable.fxml"/>
+  </center>
+</BorderPane>

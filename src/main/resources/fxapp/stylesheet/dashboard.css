@@ -30,7 +30,7 @@
   -fx-table-cell-border-color: #555;
 }
 .table-view .column-header, .table-view .filler {
-  -fx-background-color: #CCC;
+  -fx-background-color: #EEE;
   -fx-border-color: #777;
   -fx-border-width: 0 1 0 0;
   -fx-border-insets: 0;
@@ -63,13 +63,13 @@
 }
 
 .list-view {
-  -fx-background-color: #CCC;
+  -fx-background-color: #EEE;
 }
 .list-view .list-cell {
-  -fx-background-color: #CCC;
+  -fx-background-color: #EEE;
 }
 .list-view .list-cell:odd {
-  -fx-background-color: #BBB;
+  -fx-background-color: #DDD;
 }
 .list-view .list-cell:selected {
   -fx-background-color: #888;

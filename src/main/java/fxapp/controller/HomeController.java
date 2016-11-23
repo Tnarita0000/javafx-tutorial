@@ -1,24 +1,15 @@
-package sample;
-import javafx.fxml.FXMLLoader;
+package fxapp.controller;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.InputEvent;
-import javafx.scene.Parent;
-import javafx.scene.Group;
 import javafx.stage.Stage;
-import java.net.URL;
-import java.io.IOException;
-import javafx.scene.layout.ColumnConstraints;
-
+import fxapp.manager.*;
 public class HomeController {
   /* Pane */
   public GridPane gridForm;
@@ -42,7 +33,7 @@ public class HomeController {
     manager.setConnection();
 
     if (manager.hasConnection()) {
-      StageComponent.sendScene("DashboardController");
+      StageManager.sendScene("DashboardController");
     }
   }
 
@@ -56,7 +47,7 @@ public class HomeController {
   }
 
   public void pushMe(ActionEvent e) throws Exception {
-    StageComponent.sendScene("DashboardController");
+    StageManager.sendScene("DashboardController");
   }
 
   public void selectSshOption(ActionEvent e) throws Exception {

@@ -1,4 +1,4 @@
-package sample;
+package fxapp.manager;
 public class MySQLSetting {
   /* MySQL information */
   public static String hostname;

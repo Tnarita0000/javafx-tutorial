@@ -1,4 +1,4 @@
-package sample;
+package fxapp.manager;
 import java.net.Socket;
 import java.util.Properties;
 import java.util.*;

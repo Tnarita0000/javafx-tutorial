@@ -1,4 +1,4 @@
-package sample;
+package fxapp.manager;
 import java.util.Properties;
 import java.util.*;
 import java.sql.*;
@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
  *  ---------------------------------------------------------------------------
 **/
 public class MySQLManager {
-  static  MySQLConnector connector;
+  public static  MySQLConnector connector;
   private List<String> databases;
   private List<String> tables;
 

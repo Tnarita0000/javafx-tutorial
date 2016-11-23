@@ -1,24 +1,23 @@
-package sample;
+package fxapp.manager;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 
-public class StageComponent {
+public class StageManager {
   public static Stage stage;
 
-  StageComponent(Stage primaryStage) {
+  public StageManager(Stage primaryStage) {
     this.stage = primaryStage;
-    //this.stage.setMaximized(true); // Full display
     sendScene("HomeController");
   }
 
   public static void sendScene(String controllerName) {
     if (stage.getScene() == null) {
-      ViewComponent vmanager = new ViewComponent(controllerName);
+      ViewManager vmanager = new ViewManager(controllerName);
       stage.setScene(vmanager.getScene());
       stage.show();
     } else {
-      ViewComponent vmanager = new ViewComponent(controllerName);
+      ViewManager vmanager = new ViewManager(controllerName);
       stage.setScene(vmanager.getScene());
     }
   }

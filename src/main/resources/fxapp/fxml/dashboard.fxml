@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.text.* ?>
 <?import javafx.scene.Group ?>
+<?import javafx.collections.FXCollections ?>
 <?import javafx.scene.image.Image ?>
 <?import javafx.scene.image.ImageView ?>
 <?import javafx.event.* ?>
-<?import javafx.collections.FXCollections ?>
-<?import java.lang.String ?>
 
-<BorderPane fx:id="pane" fx:controller="sample.DashboardController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:controller="fxapp.controller.DashboardController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" >
   <top>
-    <BorderPane style="-fx-background-color: black;">
+    <BorderPane style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml">
       <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
       <left>
         <ComboBox value="Select Database" fx:id="databaseComboBox" onAction="#selectDatabase">
@@ -23,7 +22,7 @@
           </items>
         </ComboBox>
       </left>
-
+    
       <right>
         <HBox>
           <Button styleClass="btn-current">
@@ -41,19 +40,6 @@
     </BorderPane>
   </top>
   <center>
-    <BorderPane>
-      <left>
-        <ListView fx:id="tableList">
-          <items>
-            <FXCollections fx:factory="observableArrayList">
-            </FXCollections>
-          </items>
-        </ListView>
-      </left>
-      <center>
-        <TableView fx:id="columnTable">
-        </TableView>
-      </center>
-    </BorderPane>
+    <fx:include fx:id="tablesList" source="/fxapp/fxml/tableslist.fxml"/>
   </center>
 </BorderPane>
