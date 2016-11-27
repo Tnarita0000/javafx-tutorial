@@ -18,6 +18,6 @@
     </ListView>
   </left>
   <center>
-    <fx:include fx:id="recordsTable" source="/fxapp/fxml/recordstable.fxml"/>
+    <fx:include fx:id="toolArea" source="/fxapp/fxml/toolarea.fxml"/>
   </center>
 </BorderPane>

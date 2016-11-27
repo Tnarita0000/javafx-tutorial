@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.HashMap;
 import javafx.util.Callback;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -16,13 +17,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
-public class RecordsTableController {
+public class ToolAreaController {
   @FXML
-  TableView<Record> recordsTable;
+  TableView<Record> recordsArea;
+  @FXML
+  TextArea queryArea;
 
   public void update(String tableName) {
-    recordsTable.getColumns().clear();
-    recordsTable.getItems().clear();
+    recordsArea.getColumns().clear();
+    recordsArea.getItems().clear();
     setRecords(tableName);
   }
 
@@ -38,7 +41,7 @@ public class RecordsTableController {
           return new SimpleStringProperty(p.getValue().getData(column));
         }
       });
-      recordsTable.getColumns().add(tableColumn);
+      recordsArea.getColumns().add(tableColumn);
     }
 
     /* set records */
@@ -48,7 +51,7 @@ public class RecordsTableController {
       for(int index=0; index<columns.size(); index++) {
         tableRecord.put(columns.get(index), recordList.get(rowCount).get(index));
       }
-      recordsTable.getItems().add(new Record().setData(tableRecord));
+      recordsArea.getItems().add(new Record().setData(tableRecord));
     }
   }
 }

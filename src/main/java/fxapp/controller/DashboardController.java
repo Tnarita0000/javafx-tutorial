@@ -32,7 +32,7 @@ public class DashboardController implements Initializable {
   }
 
   public void selectConsole(ActionEvent e) {
-    System.out.println("selectConsole");
+    tablesListController.set();
   }
 
   @Override

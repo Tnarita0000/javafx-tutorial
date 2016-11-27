@@ -90,3 +90,11 @@
 .btn-current {
   -fx-opacity: 1
 }
+
+/* query area */
+.text-area {
+  -fx-text-fill: #2DFF57;
+}
+.text-area .content {
+  -fx-background-color: black;
+}

@@ -9,9 +9,10 @@
 <?import javafx.collections.FXCollections ?>
 <?import java.lang.String ?>
 
-<StackPane fx:controller="fxapp.controller.dashboard.RecordsTableController" xmlns:fx="http://javafx.com/fxml">
+<StackPane fx:controller="fxapp.controller.dashboard.ToolAreaController" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <TableView fx:id="recordsTable">
+    <TableView fx:id="recordsArea">
     </TableView>
+    <TextArea fx:id="queryArea" managed="false" visible="false"/>
   </children>
 </StackPane>
