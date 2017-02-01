@@ -1,6 +1,8 @@
-# javafx-tutorial
-
 ## 実行環境
+
+- java  
+  - JavaFX
+  - Maven
 
 javaバージョン
 
